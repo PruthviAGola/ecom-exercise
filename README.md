@@ -1,74 +1,111 @@
-🛍️ E-Commerce Data Analytics + AI Pipeline
 
-This project automates the full workflow of an online store dataset using Python, SQL, ML, and data visualization.
+ 🛍️ E-Commerce Analytics Sandbox
 
-It automatically:
+This project simulates a compact end-to-end ecommerce analytics system. It can:
 
-✔ Generates realistic synthetic data (customers, products, orders, items)
-✔ Loads it into a structured SQLite database
-✔ Runs SQL-based analytics queries and exports reports
-✔ Builds machine learning models (Recommendations + CLV scoring)
-✔ Produces visual business dashboards (charts)
+* Fabricate realistic datasets for customers, products, orders, and order items.
+* Build an SQLite analytics warehouse with a structured schema.
+* Run repeatable, multi-table SQL analysis for business insights.
+* Apply machine learning models for Customer Lifetime Value (CLV) and product recommendations.
+* Generate visualization dashboards for revenue and sales trends.
 
-This project demonstrates skills in:
-Data Engineering → ETL → SQL Analytics → Machine Learning → Data Visualization
+Use it to demo ETL workflows, practice SQL joins, experiment with machine learning logic, or test BI pipelines without accessing real production data.
+
+---
+
+⭐ Key Features
+
+* Synthetic data generation — `generate_data.py` outputs linked CSV files representing realistic ecommerce behavior (customers, products, orders, and order items) using Faker.
+* One-step ingestion into SQLite — `ingest_sqlite.py` creates `ecommerce.db`, defines the schema, loads the generated CSVs, and applies indexing for fast analytical queries.
+* Analytics queries — `run_query.py` performs multi-table joins to produce business insights such as best-selling products and top customers.
+* Machine learning modules — Includes a recommendation engine using cosine similarity and CLV scoring for identifying high-value users.
+* Visualization dashboard— `dashboard.py` generates PNG charts including top customers, category revenue, and monthly sales trends using Matplotlib.
+* Portable and lightweight — No cloud services or external dependencies; everything runs locally on Python and SQLite.
+
+---
+
+📁 Repository Layout
+
+```
+ecom-exercise/
+├── data/                      # Generated CSV files & SQLite database
+├── charts/                    # Auto-generated dashboard visualizations
+│
+├── generate_data.py           # Synthetic data generator
+├── ingest_sqlite.py           # SQLite schema + loader
+├── run_query.py               # SQL reporting
+├── recommendation_engine.py   # ML-based product recommendation system
+├── clv_analysis.py            # Customer Lifetime Value analytics
+├── dashboard.py               # Visualization builder
+│
+└── README.md
+```
+
+---
+
+🧱 Data Model
+
+| Table       | Purpose / Columns                                                              |
+| ----------- | ------------------------------------------------------------------------------ |
+| customers   | `customer_id, name, email` — customer identity and metadata                    |
+| products    | `product_id, name, category, price` — catalog items                            |
+| orders      | `order_id, customer_id, order_date, total_amount` — purchase records           |
+| order_items | `item_id, order_id, product_id, quantity, price` — SKU-level details per order |
+
+The generator enforces referential integrity: every `order_items.product_id` exists in `products`, and every `orders.customer_id` exists in `customers`.
+
+---
+
+▶️ Workflow
+
+ 1) Generate synthetic CSVs
+
+```sh
+python generate_data.py
+```
+
+2) Build the SQLite database and ingest data
+
+```sh
+python ingest_sqlite.py
+```
+
+3) Run analytics reporting
+
+```sh
+python run_query.py
+```
+
+4) Run ML models
+
+```sh
+python recommendation_engine.py
+python clv_analysis.py
+```
+
+5) Generate visual dashboards
+
+```sh
+python dashboard.py
+```
+
+Each command is idempotent — you can regenerate or reload as often as needed.
+
+---
+
+ 🧰 CLI Reference
+
+| Script                     | Key Function     | Description                                          |
+| -------------------------- | ---------------- | ---------------------------------------------------- |
+| `generate_data.py`         | Data fabrication | Creates CSV datasets representing ecommerce behavior |
+| `ingest_sqlite.py`         | ETL              | Creates and loads the SQLite warehouse               |
+| `run_query.py`             | Reporting        | Runs analytical joins and outputs insights           |
+| `recommendation_engine.py` | ML               | Computes product similarity and suggestions          |
+| `clv_analysis.py`          | ML / BI          | Calculates Customer Lifetime Value rankings          |
+| `dashboard.py`             | Visualization    | Generates business charts (PNG)                      |
 
 
-⭐Key Features
-
-✔ Synthetic data generator (customers, products, orders, order_items)
-✔ Automated SQLite ingestion with indexing
-✔ SQL analytics (joins, aggregations, trends)
-✔ Customer Lifetime Value (CLV) scoring
-✔ ML Recommendation Engine using Cosine Similarity
-✔ Dashboard with revenue, sales & customer insights (Matplotlib)
 
 
- 
- 
- How to Run (Step-by-Step)
-
-
-1. Install dependencies
-   ```
-   pip install faker pandas scikit-learn matplotlib
-   ```
-   Expected: `Successfully installed ...`
-
-2. Generate synthetic data
-   ```
-   python generate_data.py
-   ```
-   Expected: CSV files appear under `data/` (customers/products/orders/order_items).
-
-3. Ingest data into SQLite
-   ```
-   python ingest_sqlite.py
-   ```
-   Expected: `data/ecommerce.db` recreated and message showing tables loaded.
-
-4. Run SQL analytics
-   ```
-   python run_query.py
-   ```
-   Expected: Console prints each query section with row counts.
-
-5. **Run ML recommendation engine**
-   ```
-   python recommendation_engine.py
-   ```
-   Expected: `Top recommendations saved to data/recommendations.csv` plus example recommendations for 3 products.
-
-6. **Run CLV analysis**
-   ```
-   python clv_analysis.py
-   ```
-   Expected: `Top 10 Customers by Customer Lifetime Value (CLV)` displayed and `data/clv_report.csv` saved.
-
-7. **Generate dashboard charts**
-   ```
-   python dashboard.py
-   ```
-   Expected: `Charts saved to /charts` and four PNGs written to the `charts/` folder.
 
 
