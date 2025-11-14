@@ -1,62 +1,53 @@
-# 🛍️ E-Commerce Data Analytics + AI
+🛍️ E-Commerce Data Analytics + AI Pipeline
 
-## 🔎 Overview
-Compact toolkit that simulates an online store, loads everything into SQLite, and layers on analytics plus AI. Perfect for beginners who want to practice data generation, SQL analysis, machine learning recommendations, and dashboard visualization in one place.
+This project automates the full workflow of an online store dataset using Python, SQL, ML, and data visualization.
 
-## ✨ Key Features
-- Synthetic data generator for customers, products, orders, and order_items.
-- Automated SQLite ingestion with indexes for fast queries.
-- Ready-to-run SQL analytics scripts for business insights.
-- Customer Lifetime Value (CLV) scoring with pandas.
-- Product recommendation engine using cosine similarity.
-- Matplotlib dashboard with revenue and sales charts.
+It automatically:
 
-## 🧰 Tech Stack
-| Layer | Tools |
-| --- | --- |
-| Language | Python 3.10 |
-| Data Generation | Faker, pandas |
-| Database | SQLite |
-| Machine Learning | pandas, scikit-learn cosine similarity |
-| Visualization | Matplotlib |
-| Version Control | Git & GitHub |
+✔ Generates realistic synthetic data (customers, products, orders, items)
+✔ Loads it into a structured SQLite database
+✔ Runs SQL-based analytics queries and exports reports
+✔ Builds machine learning models (Recommendations + CLV scoring)
+✔ Produces visual business dashboards (charts)
 
-## 🗂 Project Folder Structure
-```
-cursor-ecom-exercise/
-├── data/                # CSV exports + ecommerce.db
-├── charts/              # Generated PNG charts
-├── generate_data.py
-├── ingest_sqlite.py
-├── run_query.py
-├── recommendation_engine.py
-├── clv_analysis.py
-├── dashboard.py
-└── README.md
-```
+This project demonstrates skills in:
+Data Engineering → ETL → SQL Analytics → Machine Learning → Data Visualization
 
-## 🛠️ How to Run (Step-by-Step)
-> Run these commands from the project root. Messages listed are the expected confirmations.
 
-1. **Install dependencies**
+⭐Key Features
+
+✔ Synthetic data generator (customers, products, orders, order_items)
+✔ Automated SQLite ingestion with indexing
+✔ SQL analytics (joins, aggregations, trends)
+✔ Customer Lifetime Value (CLV) scoring
+✔ ML Recommendation Engine using Cosine Similarity
+✔ Dashboard with revenue, sales & customer insights (Matplotlib)
+
+
+ 
+ 
+ How to Run (Step-by-Step)
+
+
+1. Install dependencies
    ```
    pip install faker pandas scikit-learn matplotlib
    ```
    Expected: `Successfully installed ...`
 
-2. **Generate synthetic data**
+2. Generate synthetic data
    ```
    python generate_data.py
    ```
    Expected: CSV files appear under `data/` (customers/products/orders/order_items).
 
-3. **Ingest data into SQLite**
+3. Ingest data into SQLite
    ```
    python ingest_sqlite.py
    ```
    Expected: `data/ecommerce.db` recreated and message showing tables loaded.
 
-4. **Run SQL analytics**
+4. Run SQL analytics
    ```
    python run_query.py
    ```
@@ -80,23 +71,4 @@ cursor-ecom-exercise/
    ```
    Expected: `Charts saved to /charts` and four PNGs written to the `charts/` folder.
 
-## 📁 Output Files
-- `data/customers.csv`, `data/products.csv`, `data/orders.csv`, `data/order_items.csv`
-- `data/ecommerce.db`
-- `data/recommendations.csv`
-- `data/clv_report.csv`
-- `charts/monthly_revenue.png`
-- `charts/category_revenue.png`
-- `charts/top_customers.png`
-- `charts/best_selling_products.png`
 
-## 🚀 Future Improvements
-- Fraud detection module
-- FastAPI web API
-- Streamlit UI for self-serve dashboards
-
-## 👤 Author
-Pruthvi A Gola
-
-## 📄 License
-Released under the MIT License.
